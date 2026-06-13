@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="client.controller.DisasterController"
+           dividerPositions="0.65"
+           style="-fx-background-color:#1a1a2e;">
+
+    <VBox spacing="8" style="-fx-background-color:#1a1a2e;-fx-padding:12;">
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Disaster Records"
+                   style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#e94560;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <ToggleButton fx:id="prioritizeToggle"
+                          text="Sort by Priority"
+                          onAction="#handleTogglePriority"
+                          style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;"/>
+            <Button text="Refresh"
+                    onAction="#handleRefresh"
+                    style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;"/>
+        </HBox>
+
+        <Label fx:id="selectedIdLabel"
+               text="None selected"
+               style="-fx-text-fill:#888;-fx-font-size:11;"/>
+
+        <TableView fx:id="disasterTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="idCol" text="ID" prefWidth="45"/>
+                <TableColumn fx:id="typeCol" text="Type" prefWidth="90"/>
+                <TableColumn fx:id="titleCol" text="Title" prefWidth="175"/>
+                <TableColumn fx:id="locationCol" text="Location" prefWidth="130"/>
+                <TableColumn fx:id="severityCol" text="Severity" prefWidth="80"/>
+                <TableColumn fx:id="statusCol" text="Status" prefWidth="90"/>
+                <TableColumn fx:id="affectedCol" text="Affected" prefWidth="70"/>
+                <TableColumn fx:id="priorityCol" text="Priority" prefWidth="65"/>
+                <TableColumn fx:id="reportedAtCol" text="Reported At" prefWidth="145"/>
+            </columns>
+            <placeholder>
+                <Label text="No disasters found." style="-fx-text-fill:#666;"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+
+    <ScrollPane fitToWidth="true"
+                style="-fx-background:#1a1a2e;-fx-background-color:#1a1a2e;">
+
+        <VBox spacing="10"
+              style="-fx-background-color:#16213e;-fx-padding:16;-fx-background-radius:8;">
+
+            <Label fx:id="formTitleLabel"
+                   text="Report Disaster"
+                   style="-fx-font-size:15;-fx-font-weight:bold;-fx-text-fill:#e94560;"/>
+
+            <Label text="Type" style="-fx-text-fill:#aaa;"/>
+            <ComboBox fx:id="typeCombo" maxWidth="Infinity"/>
+
+            <Label text="Title *" style="-fx-text-fill:#aaa;"/>
+            <TextField fx:id="titleField"
+                       promptText="Short descriptive title"
+                       style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;-fx-padding:7;"/>
+
+            <Label text="Description" style="-fx-text-fill:#aaa;"/>
+            <TextArea fx:id="descriptionField"
+                      promptText="Detailed description..."
+                      prefRowCount="3"
+                      wrapText="true"
+                      style="-fx-control-inner-background:#0f3460;-fx-text-fill:white;-fx-prompt-text-fill:#aaaaaa;"/>
+
+            <Label text="Location *" style="-fx-text-fill:#aaa;"/>
+            <TextField fx:id="locationField"
+                       promptText="City / Region"
+                       style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;-fx-padding:7;"/>
+
+            <Label text="Severity" style="-fx-text-fill:#aaa;"/>
+            <ComboBox fx:id="severityCombo" maxWidth="Infinity"/>
+
+            <Label text="Estimated Affected" style="-fx-text-fill:#aaa;"/>
+            <TextField fx:id="affectedField"
+                       text="0"
+                       style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;-fx-padding:7;"/>
+
+            <VBox fx:id="statusSection" spacing="6">
+                <Label text="Status (Admin / Dispatcher only)" style="-fx-text-fill:#aaa;"/>
+                <ComboBox fx:id="statusCombo" maxWidth="Infinity"/>
+            </VBox>
+
+            <Button fx:id="addButton"
+                    text="Report Disaster"
+                    onAction="#handleAddDisaster"
+                    maxWidth="Infinity"
+                    style="-fx-background-color:#e94560;-fx-text-fill:white;-fx-font-weight:bold;-fx-background-radius:4;-fx-padding:9;"/>
+
+            <HBox fx:id="adminButtonBox" spacing="8">
+                <Button fx:id="updateButton"
+                        text="Update All"
+                        onAction="#handleUpdateDisaster"
+                        HBox.hgrow="ALWAYS"
+                        maxWidth="Infinity"
+                        style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;-fx-padding:8;"/>
+
+                <Button fx:id="updateStatusButton"
+                        text="Update Status"
+                        onAction="#handleUpdateStatus"
+                        HBox.hgrow="ALWAYS"
+                        maxWidth="Infinity"
+                        style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;-fx-padding:8;"/>
+            </HBox>
+
+            <Button text="Clear Form"
+                    onAction="#handleClearForm"
+                    maxWidth="Infinity"
+                    style="-fx-background-color:#333;-fx-text-fill:#aaa;-fx-background-radius:4;-fx-padding:6;"/>
+
+            <Label fx:id="formStatusLabel"
+                   text=""
+                   wrapText="true"
+                   style="-fx-text-fill:green;"/>
+
+        </VBox>
+    </ScrollPane>
+</SplitPane>

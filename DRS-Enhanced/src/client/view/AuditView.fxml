@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="client.controller.AuditController"
+      spacing="10" style="-fx-background-color:#1a1a2e;-fx-padding:12;">
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Audit Log (Non-Repudiation)" style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#e94560;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Refresh Logs" onAction="#handleRefreshLogs"
+                style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;"/>
+    </HBox>
+    <Label fx:id="auditStatusLabel" text="" style="-fx-text-fill:#aaa;"/>
+    <TableView fx:id="auditTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="timestampCol" text="Timestamp"    prefWidth="165"/>
+            <TableColumn fx:id="usernameCol"  text="User"         prefWidth="110"/>
+            <TableColumn fx:id="actionCol"    text="Action"       prefWidth="160"/>
+            <TableColumn fx:id="tableCol"     text="Table"        prefWidth="160"/>
+            <TableColumn fx:id="recordIdCol"  text="Record ID"    prefWidth="90"/>
+        </columns>
+        <placeholder><Label text="No audit logs found." style="-fx-text-fill:#666;"/></placeholder>
+    </TableView>
+</VBox>

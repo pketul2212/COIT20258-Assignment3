@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="client.controller.RegisterController"
+      spacing="12" style="-fx-background-color:#1a1a2e;" prefWidth="420">
+    <padding><Insets top="28" right="48" bottom="28" left="48"/></padding>
+    <Label text="Create Account" style="-fx-font-size:22;-fx-font-weight:bold;-fx-text-fill:#e94560;"/>
+    <Label text="Username *" style="-fx-text-fill:#a8a8b3;"/>
+    <TextField fx:id="usernameField" style="-fx-background-color:#16213e;-fx-text-fill:white;-fx-background-radius:5;-fx-padding:8;"/>
+    <Label text="Password *" style="-fx-text-fill:#a8a8b3;"/>
+    <PasswordField fx:id="passwordField" style="-fx-background-color:#16213e;-fx-text-fill:white;-fx-background-radius:5;-fx-padding:8;"/>
+    <Label text="Confirm Password *" style="-fx-text-fill:#a8a8b3;"/>
+    <PasswordField fx:id="confirmPasswordField" style="-fx-background-color:#16213e;-fx-text-fill:white;-fx-background-radius:5;-fx-padding:8;"/>
+    <Label text="Full Name *" style="-fx-text-fill:#a8a8b3;"/>
+    <TextField fx:id="fullNameField" style="-fx-background-color:#16213e;-fx-text-fill:white;-fx-background-radius:5;-fx-padding:8;"/>
+    <Label text="Email" style="-fx-text-fill:#a8a8b3;"/>
+    <TextField fx:id="emailField" style="-fx-background-color:#16213e;-fx-text-fill:white;-fx-background-radius:5;-fx-padding:8;"/>
+    <Label text="Phone" style="-fx-text-fill:#a8a8b3;"/>
+    <TextField fx:id="phoneField" style="-fx-background-color:#16213e;-fx-text-fill:white;-fx-background-radius:5;-fx-padding:8;"/>
+    <HBox spacing="10">
+        <Button fx:id="registerButton" text="REGISTER" onAction="#handleRegister" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                style="-fx-background-color:#e94560;-fx-text-fill:white;-fx-font-weight:bold;-fx-background-radius:5;-fx-padding:10;"/>
+        <Button text="Cancel" onAction="#handleCancel"
+                style="-fx-background-color:#444;-fx-text-fill:white;-fx-background-radius:5;-fx-padding:10;"/>
+    </HBox>
+    <Label fx:id="statusLabel" text="" wrapText="true" style="-fx-text-fill:#ff6b6b;"/>
+</VBox>

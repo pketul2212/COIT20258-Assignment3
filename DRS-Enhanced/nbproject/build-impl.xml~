@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*** GENERATED FROM project.xml - DO NOT EDIT  ***
+-->
+<project name="DRS-Enhanced-impl" basedir="..">
+    <property file="nbproject/private/private.properties"/>
+    <property file="nbproject/project.properties"/>
+    <fail unless="src.dir">Must set src.dir</fail>
+    <fail unless="build.dir">Must set build.dir</fail>
+    <fail unless="dist.dir">Must set dist.dir</fail>
+    <fail unless="build.classes.dir">Must set build.classes.dir</fail>
+
+    <target name="-pre-init"/>
+    <target name="-init" depends="-pre-init">
+        <mkdir dir="${build.classes.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <target name="compile" depends="-init">
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}"
+               source="${javac.source}" target="${javac.target}"
+               encoding="${source.encoding}" debug="true"
+               classpath="${javac.classpath}"
+               includeantruntime="false">
+            <compilerarg value="--module-path"/>
+            <compilerarg path="${libs.JavaFX.classpath}"/>
+            <compilerarg value="--add-modules"/>
+            <compilerarg value="javafx.controls,javafx.fxml"/>
+        </javac>
+        <copy todir="${build.classes.dir}">
+            <fileset dir="${src.dir}" includes="**/*.fxml,**/*.css,**/*.png,**/*.jpg"/>
+        </copy>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="${main.class}" fork="true">
+            <classpath path="${run.classpath}"/>
+            <jvmarg line="${run.jvmargs}"/>
+        </java>
+    </target>
+
+    <target name="run-server">
+        <java classname="server.DRSServer" fork="true">
+            <classpath path="${run.classpath}"/>
+        </java>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+</project>

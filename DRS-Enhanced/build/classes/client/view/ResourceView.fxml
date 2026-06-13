@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="client.controller.ResourceController"
+      spacing="8" style="-fx-background-color:#1a1a2e;-fx-padding:12;">
+    <Label text="Resource Management (Feature 2)" style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#e94560;"/>
+    <Label fx:id="resStatusLabel" text="" style="-fx-text-fill:green;" wrapText="true"/>
+    <SplitPane dividerPositions="0.55" VBox.vgrow="ALWAYS">
+        <VBox spacing="8" style="-fx-background-color:#1a1a2e;">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Resources" style="-fx-font-size:13;-fx-font-weight:bold;-fx-text-fill:white;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="selectedResLabel" text="None selected" style="-fx-text-fill:#888;-fx-font-size:11;"/>
+                <Button text="Refresh" onAction="#handleRefreshResources"
+                        style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;"/>
+            </HBox>
+            <TableView fx:id="resourceTable" VBox.vgrow="ALWAYS" prefHeight="250">
+                <columns>
+                    <TableColumn fx:id="resIdCol"       text="ID"       prefWidth="40"/>
+                    <TableColumn fx:id="resNameCol"     text="Name"     prefWidth="145"/>
+                    <TableColumn fx:id="resTypeCol"     text="Type"     prefWidth="110"/>
+                    <TableColumn fx:id="resQtyCol"      text="Qty"      prefWidth="55"/>
+                    <TableColumn fx:id="resUnitCol"     text="Unit"     prefWidth="65"/>
+                    <TableColumn fx:id="resLocationCol" text="Location" prefWidth="110"/>
+                    <TableColumn fx:id="resStatusCol"   text="Status"   prefWidth="90"/>
+                    <TableColumn fx:id="resDeptCol"     text="Department" prefWidth="120"/>
+                </columns>
+                <placeholder><Label text="No resources found." style="-fx-text-fill:#666;"/></placeholder>
+            </TableView>
+            <TitledPane text="Add / Edit Resource" expanded="true" style="-fx-text-fill:black;font-weight: bold;">
+                <GridPane hgap="10" vgap="6" style="-fx-background-color:#16213e;-fx-padding:10;">
+                    <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill:#aaa;"/>
+                    <TextField fx:id="resNameField" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="180"
+                               style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;"/>
+                    <Label text="Type:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill:#aaa;"/>
+                    <ComboBox fx:id="resTypeCombo" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity"/>
+                    <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-text-fill:#aaa;"/>
+                    <TextField fx:id="resQtyField" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                               style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;"/>
+                    <Label text="Unit:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-text-fill:#aaa;"/>
+                    <TextField fx:id="resUnitField" text="units" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                               style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;"/>
+                    <Label text="Location:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-text-fill:#aaa;"/>
+                    <TextField fx:id="resLocationField" GridPane.columnIndex="1" GridPane.rowIndex="4"
+                               style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;"/>
+                    <Label text="Status:" GridPane.columnIndex="0" GridPane.rowIndex="5" style="-fx-text-fill:#aaa;"/>
+                    <ComboBox fx:id="resStatusCombo" GridPane.columnIndex="1" GridPane.rowIndex="5" maxWidth="Infinity"/>
+                    <Label text="Department:" GridPane.columnIndex="0" GridPane.rowIndex="6" style="-fx-text-fill:#aaa;"/>
+                    <ComboBox fx:id="resDeptCombo" GridPane.columnIndex="1" GridPane.rowIndex="6" maxWidth="Infinity"/>
+                    <HBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.columnSpan="2">
+                        <Button text="Add Resource" onAction="#handleAddResource" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                                style="-fx-background-color:#e94560;-fx-text-fill:white;-fx-background-radius:4;-fx-padding:7;"/>
+                        <Button text="Update" onAction="#handleUpdateResource" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                                style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;-fx-padding:7;"/>
+                        <Button text="Clear" onAction="#handleClearForm"
+                                style="-fx-background-color:#333;-fx-text-fill:#aaa;-fx-background-radius:4;-fx-padding:7;"/>
+                    </HBox>
+                </GridPane>
+            </TitledPane>
+        </VBox>
+        <VBox spacing="8" style="-fx-background-color:#1a1a2e;-fx-padding:4;">
+            <Label text="Resource Allocations" style="-fx-font-size:13;-fx-font-weight:bold;-fx-text-fill:white;"/>
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="Disaster ID:" style="-fx-text-fill:#aaa;"/>
+                <TextField fx:id="allocDisasterIdField" promptText="e.g. 1" prefWidth="80"
+                           style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;-fx-padding:6;"/>
+                <Button text="Load Allocations" onAction="#handleLoadAllocations"
+                        style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;"/>
+            </HBox>
+            <TableView fx:id="allocationTable" VBox.vgrow="ALWAYS" prefHeight="220">
+                <columns>
+                    <TableColumn fx:id="allocIdCol"      text="ID"       prefWidth="40"/>
+                    <TableColumn fx:id="allocResNameCol" text="Resource" prefWidth="130"/>
+                    <TableColumn fx:id="allocDisasterCol" text="Disaster" prefWidth="130"/>
+                    <TableColumn fx:id="allocQtyCol"     text="Qty"      prefWidth="50"/>
+                    <TableColumn fx:id="allocStatusCol"  text="Status"   prefWidth="80"/>
+                    <TableColumn fx:id="allocDateCol"    text="Allocated At" prefWidth="145"/>
+                </columns>
+                <placeholder><Label text="Enter Disaster ID and click Load." style="-fx-text-fill:#666;"/></placeholder>
+            </TableView>
+            <TitledPane text="Allocate to Disaster" expanded="true" style="-fx-text-fill:black;font-weight: bold;">
+                <VBox spacing="8" style="-fx-background-color:#16213e;-fx-padding:10;">
+                    <Label text="1. Select resource above  2. Enter Disaster ID  3. Set quantity  4. Click Allocate"
+                           style="-fx-text-fill:#888;-fx-font-size:11;" wrapText="true"/>
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="Quantity:" style="-fx-text-fill:#aaa;"/>
+                        <TextField fx:id="allocQtyField" text="1" prefWidth="80"
+                                   style="-fx-background-color:#0f3460;-fx-text-fill:white;-fx-background-radius:4;-fx-padding:6;"/>
+                    </HBox>
+                    <HBox spacing="8">
+                        <Button text="Allocate Resource" onAction="#handleAllocateResource" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                                style="-fx-background-color:#e94560;-fx-text-fill:white;-fx-font-weight:bold;-fx-background-radius:4;-fx-padding:8;"/>
+                        <Button text="Return Allocation" onAction="#handleReturnAllocation" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                                style="-fx-background-color:#4CAF50;-fx-text-fill:white;-fx-background-radius:4;-fx-padding:8;"/>
+                    </HBox>
+                </VBox>
+            </TitledPane>
+        </VBox>
+    </SplitPane>
+</VBox>

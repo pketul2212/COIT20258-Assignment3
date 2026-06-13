@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="client.controller.MainController"
+            style="-fx-background-color:#1a1a2e;">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="16"
+              style="-fx-background-color:#16213e;-fx-padding:10 20;-fx-border-color:#e94560;-fx-border-width:0 0 2 0;">
+            <Label text="DRS-Enhanced" style="-fx-font-size:20;-fx-font-weight:bold;-fx-text-fill:#e94560;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="welcomeLabel" text="Welcome!" style="-fx-text-fill:#ccc;"/>
+            <Label fx:id="roleLabel" text="" style="-fx-text-fill:#e94560;-fx-font-weight:bold;"/>
+            <Button text="Logout" onAction="#handleLogout"
+                    style="-fx-background-color:#e94560;-fx-text-fill:white;-fx-background-radius:4;-fx-padding:5 14;"/>
+            <Button text="About" onAction="#handleAbout"
+                    style="-fx-background-color:#555;-fx-text-fill:white;-fx-background-radius:4;-fx-padding:5 14;"/>
+        </HBox>
+    </top>
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE" style="-fx-background-color:#1a1a2e;">
+            <tabs>
+                <Tab text="Disasters">
+                    <fx:include source="DisasterView.fxml"/>
+                </Tab>
+                <Tab fx:id="teamsTab" text="Team Coordination">
+                    <fx:include source="TeamView.fxml"/>
+                </Tab>
+                <Tab fx:id="resourcesTab" text="Resources">
+                    <fx:include source="ResourceView.fxml"/>
+                </Tab>
+                <Tab fx:id="usersTab" text="Users">
+                    <fx:include source="UserView.fxml"/>
+                </Tab>
+                <Tab fx:id="auditTab" text="Audit Log">
+                    <fx:include source="AuditView.fxml"/>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>
